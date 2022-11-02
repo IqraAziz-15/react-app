@@ -20,6 +20,45 @@
 #           CI: true
 
 
+# name: CI
+# on:
+#   pull_request:
+#     branches: [develop]
+#   push:
+#     branches: [develop]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Use nodeJS
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: "12.x"
+#       - run: npm ci
+#       - run: npx prettier --check "**/*.js"
+#       - run: npm test -- --coverage
+#         env:
+#           CI: true
+#       - name: Build project
+#         if: github.event_name == 'push'
+#         run: npm run build
+#       # - run: npm install --global surge
+#       # - name: Deploy to Staging
+#       #   if: github.event_name == 'push'
+#       #   run: surge
+#       #     OR
+#       - name: Deploy to Staging
+#         if: github.event_name == 'push'
+#         run: npx surge --project ./build --domain pointless-throat.surge.sh #npx will install and run surge here
+#         env:
+#           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+#           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
+
+
+
 name: CI
 on:
   pull_request:
@@ -32,6 +71,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm   # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-mynodekey-${{ hashFiles('**/package-lock.json') }}
+          restore-key: |
+            ${{ runner.os }}-mynodekey-
       - name: Use nodeJS
         uses: actions/setup-node@v1
         with:
