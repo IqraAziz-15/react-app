@@ -182,7 +182,7 @@ jobs:
       - name: Use nodeJS
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: "16.x"
       - run: npm ci
       - run: npx prettier --check "**/*.js"
       - run: npm test -- --coverage
