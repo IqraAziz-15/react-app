@@ -185,7 +185,6 @@ jobs:
           node-version: "12.x"
       - run: npm ci
       - run: npx prettier --check "**/*.js"
-      - run: npx prettier --write "**/*.js"
       - run: npm test -- --coverage
         env:
           CI: true
