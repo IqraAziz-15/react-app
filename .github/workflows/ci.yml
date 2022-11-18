@@ -240,8 +240,8 @@ jobs:
             github.sha }}",
             "body": "This issue was automatically created by the 
             Github Action Workflow **${{ github.workflow
-            }}**. \n\n The commit hash was: _${{ github.sha 
+            }}**. The commit hash was: _${{ github.sha 
             }}_.",
-            "assignees": ["${{
-            github.event.pull_request.user.login}}"]
+            "assignees": "${{
+            github.event.pull_request.user.login}}"
             }'
