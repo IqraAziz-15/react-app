@@ -244,4 +244,4 @@ jobs:
             }}_.",
             "assignees": ["${{
             github.event.pull_request.user.login}}"]
-          }'
+            }'
