@@ -232,8 +232,7 @@ jobs:
           curl --request POST \
           --url https://api.github.com/repos/${{
           github.repository }}/issues \
-          --header "authorization: Bearer ${{
-          secrets.GITHUB_TOKEN }}" \
+          --header "authorization: Bearer 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" \
           --header "content-type: application/json" \
           --data '{
             "title": "Automated issue for commit: ${{
@@ -242,6 +241,6 @@ jobs:
             Github Action Workflow **${{ github.workflow
             }}**. The commit hash was: _${{ github.sha 
             }}_.",
-            "assignees": "${{
-            github.event.pull_request.user.login}}"
+            "assignees": ["${{
+            github.event.pull_request.user.login}}"]
             }'
