@@ -229,13 +229,13 @@ jobs:
       - name: Create an Issue
         if: failure() && github.event_name == 'pull_request'
         run: |
-          curl --request POST \
-          --url https://api.github.com/repos/${{
+          curl -X POST \
+          https://api.github.com/repos/${{
           github.repository }}/issues \
-          --header 'authorization: Bearer ${{
+          -H 'authorization: Bearer ${{
           secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
+          -H 'content-type: application/json' \
+          -d '{
             "title": "Automated issue fo commit: ${{
             github.sha }}",
             "body": "This issue was automatically created by the 
