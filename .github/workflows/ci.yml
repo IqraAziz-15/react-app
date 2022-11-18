@@ -236,12 +236,12 @@ jobs:
           secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
           --data '{
-            "title": "Automated issue for commit: ${{
-            github.sha }}",
-            "body": "This issue was automatically created by the 
+            \"title\": \"Automated issue for commit: ${{
+            github.sha }}\",
+            \"body\": \"This issue was automatically created by the 
             Github Action Workflow **${{ github.workflow
             }}**. \n\n The commit hash was: _${{ github.sha 
-            }}_.",
-            "assignees": ["${{
-            github.event.pull_request.user.login}}"]
+            }}_.\",
+            \"assignees\": [\"${{
+            github.event.pull_request.user.login}}\"]
           }'
